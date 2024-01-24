@@ -54,7 +54,7 @@ export default function ProductDetail() {
                         <p>color</p>
                         <p className="text-gray">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam culpa quam possimus nam, eius ab. lique doloribus nesciunt culpa et sit.</p>
                         <div className="flex gap-2 items-center">
-                            <p>Add to Cart</p>
+                            <button className="btn-pink" type="button">Add To Cart</button>
                             <FaRegHeart />
                         </div>
                         <p>Categoried</p>
