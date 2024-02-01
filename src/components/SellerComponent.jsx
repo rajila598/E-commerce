@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom";
+import { SELLER } from "../constants/role";
 
 
 const SellerComponent = ({ role, children }) => {
     let user = useSelector((store) => store.user.value);
-    if (user?.role == "seller") {
+    if (user?.role == SELLER) {
 
         return (
             <>
@@ -13,7 +14,7 @@ const SellerComponent = ({ role, children }) => {
             </>
         )
     }
-    return <Navigate to="/" />
+    // return <Navigate to="/" />
 }
 
 export default SellerComponent

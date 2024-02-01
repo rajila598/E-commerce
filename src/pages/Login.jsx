@@ -17,7 +17,7 @@ const Login = () => {
         })
             .then(res => {
                 //when status code in 2
-                toast("Login successful")
+                toast("Login successful", {position: "top-right", theme: "light"})
                 navigate("/")
                 dispatch(setUser(res.data.user))
                 localStorage.setItem("access_token", res.data.access_token)
@@ -27,10 +27,10 @@ const Login = () => {
                 // whwen status code 3,4,5
                 if (err.response?.status === 401) {
                     console.log(err);
-                    return toast.error("Invalid credentials")
+                    return toast.error("Invalid credentials", {position: "top-right", theme: "colored"})
 
                 }
-                toast.error("Something went Wrong. Please try again later")
+                toast.error("Something went Wrong. Please try again later", {position: "top-right", theme: "colored"})
                 // toast.error("Inavld creadentails")
                 console.log(err);
             })

@@ -5,20 +5,21 @@ import { FaSearchPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, increment } from "../app/slice/cartSlice";
+import useAuthenticate from "../hooks/useAuthenticate";
 
 const Card = ({ product }) => {
     let user = useSelector((store) => store.user.value);
     let cartCount = useSelector((store) => store.cart.value);
     let dispatch = useDispatch();
+    const authenticate = useAuthenticate()
     const handleAddToCart = (e) => {
         e.preventDefault();
-        if (!user) {
-            return toast.error("Login Required");
-        } else {
-            dispatch(increment());
+        authenticate(() => {
+            dispatch(addToCart(product));
             toast("Added to Cart");
             console.log(cartCount);
-        }
+        })
+       
     };
     return (
         <>

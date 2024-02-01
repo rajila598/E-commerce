@@ -7,7 +7,7 @@ const ProtectedComponent = ({ role, children }) => {
     if (user?.role == role) {
         return <>{children}</>;
     }
-    return <Navigate to="/" />;
+    // return <Navigate to="/" />;
 };
 
 export default ProtectedComponent;

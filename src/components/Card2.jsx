@@ -7,20 +7,20 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, increment } from "../app/slice/cartSlice";
+import useAuthenticate from "../hooks/useAuthenticate";
 
 const Card2 = ({ product }) => {
     let user = useSelector((store) => store.user.value);
     let cartCount = useSelector((store) => store.cart.value);
+    const authenticate = useAuthenticate()
     let dispatch = useDispatch();
     const handleAddToCart = (e) => {
         e.preventDefault();
-        if (!user) {
-            return toast.error("Login Required");
-        } else {
-            dispatch(increment());
+        authenticate(() => {
+            dispatch(addToCart(product));
             toast("Added to Cart");
             console.log(cartCount);
-        }
+        })
     };
     return (
         <>
