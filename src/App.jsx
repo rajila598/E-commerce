@@ -20,6 +20,7 @@ import UpsertProduct from "./pages/products/UpsertProduct";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { PacmanLoader } from 'react-spinners';
 import { SellerProducts } from './pages/products/SellerProducts';
+import Products from './pages/products/Products';
 
 
 const override = {
@@ -86,7 +87,7 @@ const App = () => {
                         />
                         <Route path="signup" element={<SignUp />} />
                         <Route path="products">
-                            {/* <Route path="" element={<Products />} /> */}
+                            <Route path="" element={<Products />} />
                             <Route path=":slug" element={<ProductDetail />} />
                         </Route>
                         <Route

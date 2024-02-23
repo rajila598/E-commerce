@@ -1,7 +1,7 @@
 import { FaHeart, FaPhoneAlt, FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import search from "../assets/images/search.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ const Header = () => {
     const user = useSelector((store) => store.user.value);
     const cartCount = useSelector((store) => store.cart.value);
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const handleLogout = () => {
         dispatch(logout());
     };
@@ -96,17 +97,22 @@ const Header = () => {
                         </li>
                     </ul>
                     {/* search */}
-                    <div
+                    <form
                         className={`${isMenuOpen ? "flex" : "hidden"} lg:flex `}
+                        onSubmit={(e) => {
+                            e.preventDefault()
+                            navigate(`/products?searchTerm=`+e.target.searchTerm.value)
+                        }}
                     >
                         <input
                             type="text"
-                            className="border border-2 px-2 focus:border-secondary focus:outline-none"
+                            name = "searchTerm"
+                            className="border-2 px-2 focus:border-secondary focus:outline-none"
                         />
                         <div className="bg-secondary p-2">
                         <FaSearch className="h-5 w-5 text-white"/>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div className="block px-20 py-2 lg:hidden">
                     <IoMenu
